@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     internal var expandableListView: ExpandableListView? = null
     internal var adapter: ExpandableListAdapter? = null
     internal var titleList: List<String> ? = null
-
+//
     val data: HashMap<String, List<String>>
         get() {
             val listData = HashMap<String, List<String>>()
