@@ -10,7 +10,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.TextView
 //
 import java.util.HashMap
-
+// new change
 class CustomExpandableListAdapter internal constructor(private val context: Context, private val titleList: List<String>, private val dataList: HashMap<String, List<String>>) : BaseExpandableListAdapter() {
 
     override fun getChild(listPosition: Int, expandedListPosition: Int): Any {
