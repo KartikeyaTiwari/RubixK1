@@ -15,13 +15,16 @@ class MainActivity : AppCompatActivity() {
     internal var expandableListView: ExpandableListView? = null
     internal var adapter: ExpandableListAdapter? = null
     internal var titleList: List<String> ? = null
-//
+
     val data: HashMap<String, List<String>>
         get() {
             val listData = HashMap<String, List<String>>()
+         //  java.util.Collections.sort(listData["A-Z"])
+
 
             val redmiMobiles = ArrayList<String>()
-            redmiMobiles.add("Redmi Y2")
+
+            redmiMobiles.add("redmi")
             redmiMobiles.add("Redmi S2")
             redmiMobiles.add("Redmi Note 5 Pro")
             redmiMobiles.add("arrow_forward Create and deploy autoscaling Kotlin backends for your mobile apps\n" +
@@ -33,12 +36,13 @@ class MainActivity : AppCompatActivity() {
             redmiMobiles.add("Redmi Y1")
             redmiMobiles.add("Redmi 3S Plus")
 
-            val micromaxMobiles = ArrayList<String>()
-            micromaxMobiles.add("Micromax Bharat Go")
-            micromaxMobiles.add("Micromax Bharat 5 Pro")
-            micromaxMobiles.add("Micromax Bharat 5")
-            micromaxMobiles.add("Micromax Canvas 1")
-            micromaxMobiles.add("Micromax Dual 5")
+
+            val micromax = ArrayList<String>()
+           // micromax.add(R.string.r2.toString())
+            micromax.add("Micromax Bharat 5 Pro")
+            micromax.add("Micromax Bharat 5")
+            micromax.add("Micromax Canvas 1")
+            micromax.add("Micromax Dual 5")
 
             val appleMobiles = ArrayList<String>()
             appleMobiles.add("iPhone 8")
@@ -56,11 +60,31 @@ class MainActivity : AppCompatActivity() {
             samsungMobiles.add("Samsung Galaxy A8")
             samsungMobiles.add("Samsung Galaxy Note 4")
 
-            listData["1.Redmi"] = redmiMobiles
-            listData["2.Micromax"] = micromaxMobiles
-            listData["3.Apple"] = appleMobiles
-            listData["4.Samsung"] = samsungMobiles
+           // listData[(R.string.r1.toString()).toString()] = redmiMobiles
 
+
+            listData[getString(R.string.r1)]= redmiMobiles
+            listData[getString(R.string.r2)] = micromax
+            listData[getString(R.string.r3)] = appleMobiles
+            listData[getString(R.string.r4)] = samsungMobiles
+            listData[getString(R.string.r5)] = samsungMobiles
+            listData[getString(R.string.r6)] = samsungMobiles
+            listData[getString(R.string.r7)] = samsungMobiles
+            listData[getString(R.string.r8)] = samsungMobiles
+            listData[getString(R.string.r9)] = samsungMobiles
+           listData[getString(R.string.r10)] = redmiMobiles
+            listData[getString(R.string.r11)] =micromax
+            listData[getString(R.string.r12)] = appleMobiles
+            listData[getString(R.string.r13)] = samsungMobiles
+
+
+
+
+
+
+
+
+            listData.toSortedMap()
             return listData
         }
 
@@ -71,7 +95,8 @@ class MainActivity : AppCompatActivity() {
         expandableListView = findViewById(R.id.expandableListView)
         if (expandableListView != null) {
             val listData = data
-            titleList = ArrayList(listData.keys)
+           titleList = ArrayList(listData.keys.sorted())
+            //titleList = ArrayList(listData.keys)
             adapter = CustomExpandableListAdapter(this, titleList as ArrayList<String>, listData)
             expandableListView!!.setAdapter(adapter)
 
@@ -80,9 +105,13 @@ class MainActivity : AppCompatActivity() {
             expandableListView!!.setOnGroupCollapseListener { childPosition -> Toast.makeText(applicationContext, (titleList as ArrayList<String>)[childPosition] + " List Collapsed.", Toast.LENGTH_SHORT).show() }
 
             expandableListView!!.setOnChildClickListener { parent, v, groupPosition, childPosition, id ->
-                Toast.makeText(applicationContext, "Clicked: " + (titleList as ArrayList<String>)[childPosition] + " -> " + listData[(titleList as ArrayList<String>)[childPosition]]!!.get(groupPosition), Toast.LENGTH_SHORT).show()
+             //   Toast.makeText(applicationContext, "Clicked: " + (titleList as ArrayList<String>)[childPosition] + " -> " + listData[(titleList as ArrayList<String>)[childPosition]]!!.get(groupPosition), Toast.LENGTH_SHORT).show()
                 false
             }
         }
     }
+}
+
+private fun <E> MutableSet<E>.sorted(listData: HashMap<E, List<E>>): List<E> {
+    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 }

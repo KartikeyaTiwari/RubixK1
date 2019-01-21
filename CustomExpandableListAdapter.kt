@@ -42,6 +42,7 @@ class CustomExpandableListAdapter internal constructor(private val context: Cont
     }
 
     override fun getGroupCount(): Int {
+
         return this.titleList.size
     }
 
