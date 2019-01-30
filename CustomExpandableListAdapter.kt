@@ -3,13 +3,18 @@ package com.example.dell.rubixk1
 
 import android.content.Context
 import android.graphics.Typeface
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseExpandableListAdapter
+import android.widget.ImageView
 import android.widget.TextView
+import kotlinx.android.synthetic.main.list_group.view.*
 //
 import java.util.HashMap
+import kotlin.math.exp
+
 // new change
 class CustomExpandableListAdapter internal constructor(private val context: Context, private val titleList: List<String>, private val dataList: HashMap<String, List<String>>) : BaseExpandableListAdapter() {
 
@@ -24,12 +29,21 @@ class CustomExpandableListAdapter internal constructor(private val context: Cont
     override fun getChildView(listPosition: Int, expandedListPosition: Int, isLastChild: Boolean, convertView: View?, parent: ViewGroup): View {
         var convertView = convertView
         val expandedListText = getChild(listPosition, expandedListPosition) as String
+        val expandableListImage=getChild(listPosition, expandedListPosition) as Image
         if (convertView == null) {
             val layoutInflater = this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = layoutInflater.inflate(R.layout.list_item, null)
         }
         val expandedListTextView = convertView!!.findViewById<TextView>(R.id.expandedListItem)
         expandedListTextView.text = expandedListText
+
+        val expandableListImageView = convertView!!.findViewById<ImageView>(R.id.expandedListimageView2)
+        expandableListImageView.drawable
+
+//
+
+
+
         return convertView
     }
 

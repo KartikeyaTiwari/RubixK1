@@ -1,11 +1,22 @@
 package com.example.dell.rubixk1
 
+import android.annotation.SuppressLint
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
+import android.media.Image
+import android.os.Build
 import android.os.Bundle
+import android.provider.ContactsContract
+import android.support.annotation.RequiresApi
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import android.widget.ExpandableListAdapter
-import android.widget.ExpandableListView
-import android.widget.Toast
+import android.widget.*
+import com.example.dell.rubixk1.R.*
+import com.example.dell.rubixk1.R.drawable.*
+import kotlinx.android.synthetic.main.list_group.*
+import kotlinx.android.synthetic.main.list_group.view.*
+import kotlinx.android.synthetic.main.list_item.*
 
 import java.util.ArrayList
 import java.util.HashMap
@@ -15,26 +26,40 @@ class MainActivity : AppCompatActivity() {
     internal var expandableListView: ExpandableListView? = null
     internal var adapter: ExpandableListAdapter? = null
     internal var titleList: List<String> ? = null
+    private var myFont: Typeface? = null
+
+
 
     val data: HashMap<String, List<String>>
+        @SuppressLint("ResourceType")
         get() {
             val listData = HashMap<String, List<String>>()
-         //  java.util.Collections.sort(listData["A-Z"])
+         //  java.util.Collections.sort(listData["A-Z"])641  895
 
 
             val redmiMobiles = ArrayList<String>()
 
-            redmiMobiles.add("redmi")
-            redmiMobiles.add("Redmi S2")
-            redmiMobiles.add("Redmi Note 5 Pro")
-            redmiMobiles.add("arrow_forward Create and deploy autoscaling Kotlin backends for your mobile apps\n" +
-                    "arrow_forward Write Kotlin using your favorite Java frameworks and libraries\n" +
-                    "arrow_forward Use fully-managed MySQL/PostgreSQL or Firebase for your application database\n" +
-                    "arrow_forward Run Kotlin in a containerized application at scale on Google Kubernetes Engine\n" +
-                    "arrow_forward Use IntelliJ with Google Cloud Tools Plugins to add Google Cloud API libraries and deploy to App Engine.")
+            redmiMobiles.add(getString(string.c1))
+            redmiMobiles.add("2.Put the GREEN centre piece in front (facing you) ")
+            redmiMobiles.add("3.Find the GREEN/ WHITE edge piece (it only has 2 colours) and \n"+
+                    "turn it to one of the positions shown below (keeping white on top and green in front)")
+            redmiMobiles.add("4.Choose the options below that matches your situation and follow the arrow steps\n " +
+                    "to place the GREEN/ WHITE edge piece in place.")
+
             redmiMobiles.add("Redmi 5 Plus")
             redmiMobiles.add("Redmi Y1")
             redmiMobiles.add("Redmi 3S Plus")
+
+
+
+
+            val redmiMobilesimage = ArrayList<Image>()
+
+            redmiMobiles.add(getDrawable(step1))
+
+
+
+
 
 
             val micromax = ArrayList<String>()
@@ -63,20 +88,21 @@ class MainActivity : AppCompatActivity() {
            // listData[(R.string.r1.toString()).toString()] = redmiMobiles
 
 
-            listData[getString(R.string.r1)]= redmiMobiles
-            listData[getString(R.string.r2)] = micromax
-            listData[getString(R.string.r3)] = appleMobiles
-            listData[getString(R.string.r4)] = samsungMobiles
-            listData[getString(R.string.r5)] = samsungMobiles
-            listData[getString(R.string.r6)] = samsungMobiles
-            listData[getString(R.string.r7)] = samsungMobiles
-            listData[getString(R.string.r8)] = samsungMobiles
+            listData[getString(string.r1)]= redmiMobiles
+           // listData[expandedListItem.imageView.setImageDrawable(R.drawable.step1)]=redmiMobilesimage
+            listData[getString(string.r2)] = micromax
+            listData[getString(string.r3)] = appleMobiles
+            listData[getString(string.r4)] = samsungMobiles
+            listData[getString(string.r5)] = samsungMobiles
+            listData[getString(string.r6)] = samsungMobiles
+            listData[getString(string.r7)] = samsungMobiles
+          /*  listData[getString(R.string.r8)] = samsungMobiles
             listData[getString(R.string.r9)] = samsungMobiles
            listData[getString(R.string.r10)] = redmiMobiles
             listData[getString(R.string.r11)] =micromax
             listData[getString(R.string.r12)] = appleMobiles
             listData[getString(R.string.r13)] = samsungMobiles
-
+*/
 
 
 
@@ -88,15 +114,21 @@ class MainActivity : AppCompatActivity() {
             return listData
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(layout.activity_main)
 
-        expandableListView = findViewById(R.id.expandableListView)
+        expandableListView = findViewById(id.expandableListView)
         if (expandableListView != null) {
             val listData = data
            titleList = ArrayList(listData.keys.sorted())
+
             //titleList = ArrayList(listData.keys)
+           // myFont =  resources.getFont(R.font.cac_champagne)
+          //  myFont = ResourcesCompat.getFont(baseContext, R.font.cac_champagne)
+
+
             adapter = CustomExpandableListAdapter(this, titleList as ArrayList<String>, listData)
             expandableListView!!.setAdapter(adapter)
 
@@ -110,6 +142,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+}
+//
+private fun <E> ArrayList<E>.add(element: Drawable?) {
+
+    val array_image = ArrayList<Int>()
+    array_image.add(abc_ab_share_pack_mtrl_alpha);
+
 }
 
 private fun <E> MutableSet<E>.sorted(listData: HashMap<E, List<E>>): List<E> {
